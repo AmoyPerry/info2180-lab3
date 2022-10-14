@@ -1,7 +1,6 @@
 "use strict";
 let statArr = []
 let winnerStatus = false
-
 let current_c, current_d, current_r 
  
 let r_positions = {}; let c_positions = {}; let d_positions = {};
@@ -128,8 +127,24 @@ function checkr(r,options){
    }
    return true
 }
+
+function newGAction(){
+   let status = document.getElementById("status")
+   let myDiv = document.getElementById("board").children
+   for(let count = 0 ; count < myDiv.length; count++){
+       myDiv[count].classList.remove("X")
+       myDiv[count].classList.remove("O")
+       myDiv[count].textContent = ""
+       
+   }
+   winnerStatus = false
+   statArr = []
+   status.classList.remove("you-won")
+   status.textContent = "Move your mouse over a square and click to play an X or an O."
+   
+}
 window.onload = function (){//this enables the window to load
-    
+    let nGBtn = document.getElementsByClassName("btn")
     let myDiv = document.getElementById("board").children//gets the children of the div element with ID = board and stores it in a variable, myDiv
     
     for (let count = 0; count<myDiv.length; count++)
@@ -140,6 +155,7 @@ window.onload = function (){//this enables the window to load
          myDiv[count].setAttribute("onmouseover","addHover(this)")
          myDiv[count].setAttribute("onmouseout","removeHover(this)")
          myDiv[count].setAttribute("id",(idtracker))
+         
           //Computing the diagonal's possible position. Where the diagonal from left to right will represented by 0
           if (idtracker == 1||idtracker== 5||idtracker == 9)
           {
@@ -177,6 +193,9 @@ window.onload = function (){//this enables the window to load
               r_positions[myDiv[count].id] = 2
           }
       }
+
+      nGBtn[0].addEventListener("click",newGAction)
+
     }
 
     
