@@ -35,14 +35,17 @@ function checkD(d,options){
    return false
 }
 
-function clicker(param){
-   
-       if (statArr.length == 0 || statArr[0] == "O")
+function clicker(param)
+{
+
+       if((winnerStatus)==false)
+       {
+       if (statArr.length == 0 || statArr[0] == "O" &&  param.textContent.length==0)
        { 
            param.textContent = "X"
            param.classList.add("X")
        }
-       else if (statArr[0] == "X" )
+       else if (statArr[0] == "X" &&  param.textContent.length==0)
        {
            param.textContent = "O"
            param.classList.add("O")
@@ -61,7 +64,7 @@ function clicker(param){
 
        if (checkr(rs[current_r],statArr[0]) == true)
        {
-           winnerStatus= true
+           winnerStatus = true
        }
        else if (checkC(cs[current_c],statArr[0]) == true)
        {
@@ -71,7 +74,7 @@ function clicker(param){
        {
            winnerStatus = true
        }
-       if (winnerStatus== true)
+       if (winnerStatus == true)
        {
            let status = document.getElementById("status")
            status.classList.add("you-won")
@@ -79,6 +82,7 @@ function clicker(param){
           
            
        }
+      }
 }
  
  function addHover (param)
@@ -155,7 +159,7 @@ window.onload = function (){//this enables the window to load
          myDiv[count].setAttribute("onmouseover","addHover(this)")
          myDiv[count].setAttribute("onmouseout","removeHover(this)")
          myDiv[count].setAttribute("id",(idtracker))
-         
+
           //Computing the diagonal's possible position. Where the diagonal from left to right will represented by 0
           if (idtracker == 1||idtracker== 5||idtracker == 9)
           {
